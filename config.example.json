@@ -1,0 +1,13 @@
+[
+    {
+        "categoryName": "Category name",
+        "images": [
+            {
+                "url": "/directory/filename1.png"
+            },
+            {
+                "url": "/directory/filename2.png"
+            }
+        ]
+    }
+]
