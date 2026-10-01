@@ -28,10 +28,14 @@
     const accordion = document.getElementById('categoriesAccordion');
     const toastEl = document.getElementById('copyToast');
     const toast = new bootstrap.Toast(toastEl, { delay: 2000 });
+    const basePath = location.href.substring(0, location.href.lastIndexOf('/') + 1);
+
+    function resolveUrl(url) {
+      return new URL(url, basePath).href;
+    }
 
     function copyUrl(url) {
-      const fullUrl = `${location.origin}${url}`;
-      navigator.clipboard.writeText(fullUrl).then(() => toast.show());
+      navigator.clipboard.writeText(resolveUrl(url)).then(() => toast.show());
     }
 
     function buildAccordion(categories) {
@@ -43,7 +47,7 @@
         const rows = category.images.map(img => `
           <tr>
             <td style="width:70%" class="text-center align-middle p-2">
-              <img src="${img.url}" class="img-fluid" alt="${img.url}" />
+              <img src="${resolveUrl(img.url)}" class="img-fluid" alt="${img.url}" />
             </td>
             <td style="width:30%" class="text-center align-middle p-2">
               <button class="btn btn-sm btn-outline-secondary" onclick="copyUrl('${img.url}')">Копіювати URL</button>
